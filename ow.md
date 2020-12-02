@@ -18,7 +18,6 @@ DevSidecar：               返回给DevSidecar
 浏览器访问：                返回给浏览器
 
 ```
-> 注意保护`yourdomain.com/xxxxxx`，不要公开
 
 
 缺点
@@ -74,4 +73,4 @@ DevSidecar：               返回给DevSidecar
 yourdomain.com/xxxxxx
 ```
 
-> 注意保护`yourdomain.com/xxxxxx`，不要公开
+> 注意保护好 `yourdomain.com/xxxxxx`，不要公开
