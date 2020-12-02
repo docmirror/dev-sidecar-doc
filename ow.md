@@ -1,17 +1,16 @@
 # 梯子原理
 
 1. 通过两层代理，将目标请求链接隐藏在https之中被加密，规避GFW的https握手特征检查
-2. 通过二级路径（下图的xxxxxx），规避GFW的试探性钓鱼检查
-
+2. 通过二级路径（下图的xxxxxxxx），规避GFW的试探性钓鱼检查
 
 ```
 浏览器访问：               https://www.google.com    
                                 |
-DevSidecar【第一层代理】：  https://yourdomain.com/xxxxxx/www.google.com/
+DevSidecar【第一层代理】：  https://yourdomain.com/xxxxxxxx/www.google.com/
                                 |
 GFW：                          GFW
                                 |
-境外Nginx【第二层代理】：    获取到xxxxxx之后的域名和地址，代理到https://www.goolge.com
+境外Nginx【第二层代理】：    获取到xxxxxxxx之后的域名和地址，代理到https://www.goolge.com
                                 |
 DevSidecar：               返回给DevSidecar
                                 |
@@ -45,21 +44,21 @@ DevSidecar：               返回给DevSidecar
     ssl_prefer_server_ciphers on;
     
    
-    location ^~/xxxxxx/ {  # xxxxxx 改成你自己随便任意的前缀地址
+    location ^~/xxxxxxxx/ {  # xxxxxxxx 改成你自己随便任意的前缀地址
         resolver 1.1.1.1 ipv6=off;
-        if ( $request_uri ~ /xxxxxx/([^/]+)/(.*) ){ # 将xxxxxx修改为你路径前缀
+        if ( $request_uri ~ /xxxxxxxx/([^/]+)/(.*) ){ # 将xxxxxxxx修改为你路径前缀
             set  $_host $1;
             set  $_uri $2;
          }
         proxy_pass $scheme://$_host/$_uri;
-        proxy_redirect https://yourdomain.com/xxxxxx/ /;  # 修改为你的域名和路径前缀
+        proxy_redirect https://yourdomain.com/xxxxxxxx/ /;  # 修改为你的域名和路径前缀
         proxy_buffers   256 4k;
         proxy_max_temp_file_size 0k;
         proxy_set_header referer $scheme://$_host;
         proxy_set_header Host $_host;
         proxy_ssl_server_name on;
     }
-    location / {
+    location / {  //其他访问全部拒绝，规避GFW的钓鱼试探
        resolver 1.1.1.1;
        deny all;
     }
@@ -71,8 +70,8 @@ DevSidecar：               返回给DevSidecar
 
 将代理服务端修改为如下地址，应用即可
 ```
-yourdomain.com/xxxxxx
+yourdomain.com/xxxxxxxx
 ```
 
 > 这个xxxxxx要修改成你自己的，你把它当成密码     
-> 注意保护好 `yourdomain.com/xxxxxx`，不要公开
+> 注意保护好 `yourdomain.com/xxxxxxxx`，不要公开
