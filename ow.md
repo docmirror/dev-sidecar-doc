@@ -73,5 +73,5 @@ DevSidecar：               返回给DevSidecar
 yourdomain.com/xxxxxxxx
 ```
 
-> 这个xxxxxx要修改成你自己的，你把它当成密码     
+> 这个`xxxxxxxx`要修改成你自己的，你把它当成密码     
 > 注意保护好 `yourdomain.com/xxxxxxxx`，不要公开
