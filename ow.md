@@ -33,6 +33,7 @@ DevSidecar：               返回给DevSidecar
 * 下载DevSidecar
 
 ### 2. nginx配置
+```
  server {
     listen 443 ssl;  
     server_name yourdomain.com ; # 修改为你的域名
