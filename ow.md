@@ -58,7 +58,7 @@ DevSidecar：               返回给DevSidecar
         proxy_set_header Host $_host;
         proxy_ssl_server_name on;
     }
-    location / {  //其他访问全部拒绝，规避GFW的钓鱼试探
+    location / {  # 其他访问全部拒绝，规避GFW的钓鱼试探
        resolver 1.1.1.1;
        deny all;
     }
