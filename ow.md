@@ -66,12 +66,13 @@ DevSidecar：               返回给DevSidecar
 }
 ```
 ### 3. DevSidecar配置
-按如下设置
-应用---> ????? ---> 代理服务端    
+按如下设置       
+应用---> 不好说 ---> 代理服务端    
 
 将代理服务端修改为如下地址，应用即可
 ```
 yourdomain.com/xxxxxx
 ```
 
+> 这个xxxxxx要修改成你自己的，你把它当成密码     
 > 注意保护好 `yourdomain.com/xxxxxx`，不要公开
