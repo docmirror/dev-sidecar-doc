@@ -36,19 +36,29 @@ DevSidecar：               返回给DevSidecar
 
 ###  1. 准备工作
 * 一台境外服务器
-* 一个域名，自签名证书
+* 一个域名，免费证书
 * 下载[DevSidecar](https://github.com/docmirror/dev-sidecar)
 
 我的服务器是[1核1G的香港主机](https://www.ucloud.cn/site/active/kuaijie.html?invitation_code=C1xF886DAFF2658)       
 如果你没有合适的境外主机，可以点击链接去购买，新用户还是挺划算的
 
 ### 2. nginx配置
+
+```
+你需要定义如下三个变量
+域名：yourdomain.com       你注册域名，千万别跟google facebook github这些重点监控的域名相似
+路径：xxxxxxxx             你随便乱敲一串字母就行
+密码：yourpassword         同上
+证书：/xx/ssl证书.crt       绝对路径
+     /xx/ssl证书私钥.key
+```
+
 ```
  server {
     listen 443 ssl;  
     server_name yourdomain.com ; # 修改为你的域名
-    ssl_certificate /app/ssl/你的域名证书.crt;   # 修改为你的证书
-    ssl_certificate_key /app/ssl/你的域名证书.key; # 修改为你的证书
+    ssl_certificate /app/ssl/ssl证书.crt;   # 修改为你域名ssl证书的绝对路径
+    ssl_certificate_key /app/ssl/ssl证书私钥.key; # 修改为ssl证书私钥绝对路径
     ssl_session_timeout 5m;
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
     ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
@@ -57,12 +67,12 @@ DevSidecar：               返回给DevSidecar
    
     location ^~/xxxxxxxx/ {  # xxxxxxxx 改成你自己随便任意的前缀地址
         resolver 1.1.1.1 ipv6=off;
-        if ( $http_dspassword != 'your password' ){ # 你的密码，如果不配置密码，去掉它即可
+        if ( $http_dspassword != 'your password' ){ # 校验密码，如果不配置密码，去掉它即可
             return 404; # 也可以改成403、502等其他错误,最好与下面的返回一致
         }
         if ( $request_uri ~ /xxxxxxxx/([^/]+)/(.*) ){ # 将xxxxxxxx修改为你路径前缀
-            set  $_host $1;
-            set  $_uri $2;
+            set  $_host $1; // 获取路径后的目标网站的域名
+            set  $_uri $2; // 获取目标网站的请求地址
          }
         proxy_pass $scheme://$_host/$_uri;
         proxy_redirect https://yourdomain.com/xxxxxxxx/ /;  # 修改为你的域名和路径前缀
@@ -82,10 +92,8 @@ DevSidecar：               返回给DevSidecar
 按如下设置       
 应用---> 功能增强 ---> 代理服务端    
 
-将代理服务端修改为如下地址，应用即可
-```
-域名：yourdomain.com  路径：xxxxxxxx  密码：yourpassword
-```
+将代理服务端三个空，填上面配置时用的变量，应用即可
+
 
 > `xxxxxxxx`一定要修改成你自己的，你把它也当成是一个密码     
 > 注意保护好 `域名、路径 和密码`，不要公开
