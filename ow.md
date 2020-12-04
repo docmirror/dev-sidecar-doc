@@ -21,14 +21,19 @@ DevSidecar：               返回给DevSidecar
 
 在GFW看来你的流量就是在访问`yourdomain.com`这个正常的大网站而已
 
-缺点
-> 二层代理并没有对tls协议再次封装，仅仅只是简单的代理转发。      
-> 所以服务端可以篡改内容，存在安全风险，为了安全，最好是自建服务端。    
-> 理论上可以在 `yourdomain.com/xxxxxxxx`下再次封装tls协议，可以防篡改
+优点：
+> 简单易懂有效    
+> 可以套CDN，隐藏服务器IP
 
-总结两点
+缺点：
+> 1、 仅支持HTTPS     
+> 2、 二层代理并没有对tls协议再次封装，仅仅只是简单的代理转发。      
+> 所以服务端可以篡改内容，存在安全风险，为了安全，最好是自建服务端。    
+> 理论上可以在`yourdomain.com/xxxxxxxx`下封装与目标网站的tls，防篡改
+
+总结两点：
 > 大道至简：做的越多，错的越多。简单最有效，大隐隐于市。      
-> 降维打击：安全我都不要了，你奈我何。(自建服务器可以解决安全问题)
+> 降维打击：安全我都不要了，你奈我何。(自建服务器可以解决)
 
 ## 自建服务端步骤
 配置非常简单，会搭nginx即可
@@ -38,8 +43,8 @@ DevSidecar：               返回给DevSidecar
 * 一个域名，自签名证书
 * 下载DevSidecar
 
-我的服务器是[UCloud最便宜1核1G的香港主机](https://www.ucloud.cn/site/active/kuaijie.html?invitation_code=C1xF886DAFF2658)       
-如果你没有合适的境外主机，可以点击链接去购买，新用户挺划算的
+我的服务器是[1核1G的香港主机](https://www.ucloud.cn/site/active/kuaijie.html?invitation_code=C1xF886DAFF2658)       
+如果你没有合适的境外主机，可以点击链接去购买，新用户还是挺划算的
 
 ### 2. nginx配置
 ```
@@ -56,6 +61,9 @@ DevSidecar：               返回给DevSidecar
    
     location ^~/xxxxxxxx/ {  # xxxxxxxx 改成你自己随便任意的前缀地址
         resolver 1.1.1.1 ipv6=off;
+        if ( $http_dspassword != 'your password' ){ # 你的密码，如果不配置密码，去掉它即可
+            return 403;
+        }
         if ( $request_uri ~ /xxxxxxxx/([^/]+)/(.*) ){ # 将xxxxxxxx修改为你路径前缀
             set  $_host $1;
             set  $_uri $2;
@@ -70,7 +78,7 @@ DevSidecar：               返回给DevSidecar
     }
     location / {  # 其他访问全部拒绝，规避GFW的钓鱼试探
        resolver 1.1.1.1;
-       deny all;
+       return 404; # 也可以改成403、502等其他错误， 或者返回自己的伪装网站
     }
 }
 ```
@@ -80,8 +88,8 @@ DevSidecar：               返回给DevSidecar
 
 将代理服务端修改为如下地址，应用即可
 ```
-yourdomain.com/xxxxxxxx
+域名：yourdomain.com  路径：xxxxxxxx  密码：yourpassword
 ```
 
-> 这个`xxxxxxxx`要修改成你自己的，你把它当成密码     
-> 注意保护好 `yourdomain.com/xxxxxxxx`，不要公开
+> `xxxxxxxx`一定要修改成你自己的，你把它也当成是一个密码     
+> 注意保护好 `域名、路径 和密码`，不要公开
