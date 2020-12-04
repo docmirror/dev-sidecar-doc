@@ -58,7 +58,7 @@ DevSidecar：               返回给DevSidecar
     location ^~/xxxxxxxx/ {  # xxxxxxxx 改成你自己随便任意的前缀地址
         resolver 1.1.1.1 ipv6=off;
         if ( $http_dspassword != 'your password' ){ # 你的密码，如果不配置密码，去掉它即可
-            return 403;
+            return 404; # 也可以改成403、502等其他错误,最好与下面的返回一致
         }
         if ( $request_uri ~ /xxxxxxxx/([^/]+)/(.*) ){ # 将xxxxxxxx修改为你路径前缀
             set  $_host $1;
@@ -74,7 +74,7 @@ DevSidecar：               返回给DevSidecar
     }
     location / {  # 其他访问全部拒绝，规避GFW的钓鱼试探
        resolver 1.1.1.1;
-       return 404; # 也可以改成403、502等其他错误， 或者返回一个伪装网站
+       return 404; # 也可以改成403、502等其他错误，最好与上面的密码错误返回一致，或者返回一个伪装网站
     }
 }
 ```
