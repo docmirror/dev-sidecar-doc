@@ -19,7 +19,7 @@ DevSidecar：               返回给DevSidecar
 
 ```
 
-在GFW看来你的流量就是在访问`yourdomain.com`这个正常的大网站而已
+在GFW看来你的流量就是在访问`yourdomain.com`这个正常的网站而已
 
 优点：
 > 简单易懂有效    
