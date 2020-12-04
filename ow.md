@@ -21,10 +21,6 @@ DevSidecar：               返回给DevSidecar
 
 在GFW看来你的流量就是在访问`yourdomain.com`这个正常的网站而已
 
-优点：
-> 简单易懂有效    
-> 可以套CDN，隐藏服务器IP
-
 缺点：
 > 1、 仅支持HTTPS     
 > 2、 二层代理并没有对tls协议再次封装，仅仅只是简单的代理转发。      
