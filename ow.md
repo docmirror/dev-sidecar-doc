@@ -49,6 +49,7 @@ DevSidecar：               返回给DevSidecar
 域名：yourdomain.com       你注册域名，千万别跟google facebook github这些重点监控的域名相似
 路径：xxxxxxxx             你随便乱敲一串字母就行
 密码：yourpassword         同上
+
 证书：/xx/ssl证书.crt       绝对路径
      /xx/ssl证书私钥.key
 ```
