@@ -41,7 +41,7 @@ DevSidecar：               返回给DevSidecar
 ###  1. 准备工作
 * 一台境外服务器
 * 一个域名，自签名证书
-* 下载DevSidecar
+* 下载[DevSidecar](https://github.com/docmirror/dev-sidecar)
 
 我的服务器是[1核1G的香港主机](https://www.ucloud.cn/site/active/kuaijie.html?invitation_code=C1xF886DAFF2658)       
 如果你没有合适的境外主机，可以点击链接去购买，新用户还是挺划算的
@@ -78,7 +78,7 @@ DevSidecar：               返回给DevSidecar
     }
     location / {  # 其他访问全部拒绝，规避GFW的钓鱼试探
        resolver 1.1.1.1;
-       return 404; # 也可以改成403、502等其他错误， 或者返回自己的伪装网站
+       return 404; # 也可以改成403、502等其他错误， 或者返回一个伪装网站
     }
 }
 ```
