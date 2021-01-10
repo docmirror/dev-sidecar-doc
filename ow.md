@@ -72,8 +72,8 @@ DevSidecar：               返回给DevSidecar
             return 404; # 也可以改成403、502等其他错误,最好与下面的返回一致
         }
         if ( $request_uri ~ /xxxxxxxx/([^/]+)/(.*) ){ # 将xxxxxxxx修改为你路径前缀
-            set  $_host $1; // 获取路径后的目标网站的域名
-            set  $_uri $2; // 获取目标网站的请求地址
+            set  $_host $1; # 获取路径后的目标网站的域名
+            set  $_uri $2; # 获取目标网站的请求地址
          }
         proxy_pass $scheme://$_host/$_uri;
         proxy_redirect https://yourdomain.com/xxxxxxxx/ /;  # 修改为你的域名和路径前缀
