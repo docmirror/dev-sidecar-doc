@@ -77,8 +77,11 @@ DevSidecar：               返回给DevSidecar
          }
         proxy_pass $scheme://$_host/$_uri;
         proxy_redirect https://yourdomain.com/xxxxxxxx/ /;  # 修改为你的域名和路径前缀
-        proxy_buffers   256 4k;
-        proxy_max_temp_file_size 0k;
+        proxy_buffer_size 32k;
+        proxy_buffers 64 32k;
+        proxy_busy_buffers_size 1m;
+        proxy_temp_file_write_size 512k;
+        proxy_max_temp_file_size 128m;
         proxy_set_header referer $scheme://$_host;
         proxy_set_header Host $_host;
         proxy_ssl_server_name on;
