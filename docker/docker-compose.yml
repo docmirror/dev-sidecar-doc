@@ -1,0 +1,14 @@
+version: '2.4'
+services:
+  nginx:
+    container_name: nginx-proxy
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+    - 443:443
+    volumes:
+    -  /disk02/www:/usr/share/nginx/html
+    environment:
+    - TZ=Asia/Shanghai
