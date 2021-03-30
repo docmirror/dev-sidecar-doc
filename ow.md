@@ -25,7 +25,7 @@ DevSidecar：               返回给DevSidecar
 > 1、 仅支持HTTPS     
 > 2、 二层代理并没有对tls协议再次封装，仅仅只是简单的代理转发。      
 > 所以服务端可以篡改内容，存在安全风险，为了安全，最好是自建服务端。    
-> 理论上可以在`yourdomain.com/xxxxxxxx`下封装与目标网站的tls，防篡改
+> 理论上可以在`yourdomain.com/xxxxxxxx`的wss下封装与目标网站的tls，防篡改，就不需要信任根证书了（有空再研究，现阶段的简单实现已经够用，不介意根证书的话）
 
 总结两点：
 > 大道至简：做的越多，错的越多。简单最有效，大隐隐于市。      
@@ -72,13 +72,16 @@ DevSidecar：               返回给DevSidecar
             return 404; # 也可以改成403、502等其他错误,最好与下面的返回一致
         }
         if ( $request_uri ~ /xxxxxxxx/([^/]+)/(.*) ){ # 将xxxxxxxx修改为你路径前缀
-            set  $_host $1; // 获取路径后的目标网站的域名
-            set  $_uri $2; // 获取目标网站的请求地址
+            set  $_host $1; # 获取路径后的目标网站的域名
+            set  $_uri $2; # 获取目标网站的请求地址
          }
         proxy_pass $scheme://$_host/$_uri;
         proxy_redirect https://yourdomain.com/xxxxxxxx/ /;  # 修改为你的域名和路径前缀
-        proxy_buffers   256 4k;
-        proxy_max_temp_file_size 0k;
+        proxy_buffer_size 32k;
+        proxy_buffers 64 32k;
+        proxy_busy_buffers_size 1m;
+        proxy_temp_file_write_size 512k;
+        proxy_max_temp_file_size 128m;
         proxy_set_header referer $scheme://$_host;
         proxy_set_header Host $_host;
         proxy_ssl_server_name on;
