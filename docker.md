@@ -3,6 +3,9 @@
 * 安装docker
 * 安装docker-compose
 * 启动nginx容器
+* 配置dev-sidecar
+* go 
+
 ## 1、安装docker
 如果你是centos，执行如下命令即可
 ```shell

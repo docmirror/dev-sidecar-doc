@@ -100,3 +100,7 @@ DevSidecar：               返回给DevSidecar
 
 > `xxxxxxxx`一定要修改成你自己的，你把它也当成是一个密码        
 > 注意保护好 `域名、路径 和密码`，不要公开     
+
+## docker镜像启动
+如果你不会安装nginx，推荐你按下面的docker镜像启动更方便   
+[docker启动教程](./docker.md)
