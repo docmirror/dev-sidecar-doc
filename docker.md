@@ -1,4 +1,4 @@
-# 服务端安装教程
+# docker镜像启动
 安装步骤
 * 安装docker
 * 安装docker-compose
