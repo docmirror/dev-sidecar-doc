@@ -3,18 +3,15 @@ services:
   nginx:
     container_name: dev-sidecar-nginx
     image: dev-sidecar-nginx:1.0.0
-    build:
-      context: ./
-      dockerfile: Dockerfile
     restart: always
     ports:
     - 443:443
     volumes:
-    -  /disk02/www:/usr/share/nginx/html
+    -  ~/deploy/nginx-proxy/ssl:/app/ssl/  # 证书目录映射
     environment:
     - TZ=Asia/Shanghai
     - SSL_CERTIFICATE=/app/ssl/cert.crt
     - SSL_CERTIFICATE_KEY=/app/ssl/cert.key
-    - HOSTNAME=yourdomain.com
-    - PASSWORD=123456
-    - CONTEXT_PATH=change_me
+    - HOSTNAME=gh-aws.docmirror.top # 修改为你的域名
+    - PASSWORD=thankyou # 修改密码
+    - CONTEXT_PATH=edfbdtye45ydfsb # 请求路径

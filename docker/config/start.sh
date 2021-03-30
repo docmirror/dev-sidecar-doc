@@ -1,0 +1,7 @@
+cp -f  '/etc/nginx/nginx-template.conf' '/etc/nginx/nginx.conf'
+sed -i 's#${SSL_CERTIFICATE}#'"$SSL_CERTIFICATE"'#g' '/etc/nginx/nginx.conf'
+sed -i 's#${SSL_CERTIFICATE_KEY}#'"$SSL_CERTIFICATE_KEY"'#g' '/etc/nginx/nginx.conf'
+sed -i 's#${HOSTNAME}#'"$HOSTNAME"'#g' '/etc/nginx/nginx.conf'
+sed -i 's#${PASSWORD}#'"$PASSWORD"'#g' '/etc/nginx/nginx.conf'
+sed -i 's#${CONTEXT_PATH}#'"$CONTEXT_PATH"'#g' '/etc/nginx/nginx.conf'
+nginx -g 'daemon off;'
