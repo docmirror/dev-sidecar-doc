@@ -1,0 +1,18 @@
+version: '2.4'
+services:
+  nginx:
+    container_name: dev-sidecar-nginx
+    image: docmirror/dev-sidecar-nginx:1.0.0
+    restart: always
+    ports:
+    - 443:443
+    volumes:
+    -  ~/deploy/ds-nginx/ssl:/app/ssl/  # 证书目录映射
+    environment:
+    - TZ=Asia/Shanghai
+    - SSL_CERTIFICATE=/app/ssl/cert.crt # 这里修改为你的证书名称
+    - SSL_CERTIFICATE_KEY=/app/ssl/cert.key # 这里修改为你的证书私钥名称
+    - HOSTNAME=yourdomain.com # 修改为你的域名
+    - CONTEXT_PATH=ertccawe24234 # 路径，随便乱输入就行
+    - PASSWORD=yourpassword # 密码
+
