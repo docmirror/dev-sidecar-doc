@@ -12,6 +12,6 @@ services:
     - TZ=Asia/Shanghai
     - SSL_CERTIFICATE=/app/ssl/cert.crt
     - SSL_CERTIFICATE_KEY=/app/ssl/cert.key
-    - HOSTNAME=gh-aws.docmirror.top # 修改为你的域名
-    - PASSWORD=thankyou # 修改密码
-    - CONTEXT_PATH=edfbdtye45ydfsb # 请求路径
+    - HOSTNAME=yourdomain.com # 修改为你的域名
+    - PASSWORD=yourpassword # 修改密码
+    - CONTEXT_PATH=ertccawe24234 # 请求路径，随便乱输入就行
