@@ -7,7 +7,7 @@ services:
     ports:
     - 443:443
     volumes:
-    -  ~/deploy/ds-nginx/ssl:/app/ssl/  # 证书目录映射
+    -  ~/deploy/ds-nginx/ssl:/app/ssl/  # 证书目录映射，不用动，下面的/app/ssl不用动，只需要修改证书名称
     environment:
     - TZ=Asia/Shanghai
     - SSL_CERTIFICATE=/app/ssl/cert.crt # 这里修改为你的证书名称
