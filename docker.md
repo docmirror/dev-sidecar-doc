@@ -7,6 +7,13 @@
 * go 
 
 ## 1、安装docker
+
+如果你是centos8.x
+```shell
+yum remove podman # 先卸载podman，docker-ce与podman有冲突
+# 如果你的系统已经有应用跑在podman上，就不要卸载了，请安装podman-compose，然后直接看第3步
+```
+
 如果你是centos，执行如下命令即可
 ```shell
 sudo yum install -y yum-utils
