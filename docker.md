@@ -56,3 +56,10 @@ docker-compose up -d
 应用---> 功能增强 ---> 代理服务端       
 填上一步时配置的三个变量（域名、路径、密码），应用即可      
 ![](./image/server.png)   
+
+
+# 问题排查
+打印nginx日志,看看有什么报错
+```shell
+docker logs -f --tail 200 dev-sidecar-nginx
+```

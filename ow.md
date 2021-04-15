@@ -11,7 +11,7 @@ DevSidecar【第一层代理】：  https://yourdomain.com/xxxxxxxx/www.google.c
                                 |
 GFW：                          GFW
                                 |
-境外Nginx【第二层代理】：    获取到xxxxxxxx之后的域名和地址，代理到https://www.goolge.com
+境外Nginx【第二层代理】：    获取到xxxxxxxx之后的域名和地址，代理到https://www.google.com
                                 |
 DevSidecar：               返回给DevSidecar
                                 |
