@@ -2,7 +2,7 @@ version: '2.4'
 services:
   nginx:
     container_name: dev-sidecar-nginx
-    image: docmirror/dev-sidecar-nginx:1.0.0
+    image: docmirror/dev-sidecar-nginx:1.1.0
     build:
       context: ./
       dockerfile: Dockerfile
