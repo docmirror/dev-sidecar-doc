@@ -82,7 +82,6 @@ DevSidecar：               返回给DevSidecar
         proxy_busy_buffers_size 1m;
         proxy_temp_file_write_size 512k;
         proxy_max_temp_file_size 128m;
-        proxy_set_header referer $scheme://$_host;
         proxy_set_header Host $_host;
         proxy_ssl_server_name on;
     }
