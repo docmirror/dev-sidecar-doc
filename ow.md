@@ -71,7 +71,8 @@ DevSidecar：               返回给DevSidecar
         if ( $http_dspassword != 'your password' ){ # 校验密码，如果不配置密码，去掉它即可
             return 404; # 也可以改成403、502等其他错误,最好与下面的返回一致
         }
-        if ( $request_uri ~ /xxxxxxxx/([^/]+)/(.*) ){ # 将xxxxxxxx修改为你路径前缀
+        set $_full_uri $uri$is_args$args;
+        if ( $_full_uri ~ /xxxxxxxx/([^/]+)/(.*) ){ # 将xxxxxxxx修改为你路径前缀
             set  $_host $1; # 获取路径后的目标网站的域名
             set  $_uri $2; # 获取目标网站的请求地址
          }
