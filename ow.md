@@ -68,7 +68,7 @@ DevSidecar：               返回给DevSidecar
    
     location ^~/xxxxxxxx/ {  # xxxxxxxx 改成你自己随便任意的前缀地址
         resolver 1.1.1.1 ipv6=off;
-        if ( $http_dspassword != 'your password' ){ # 校验密码，如果不配置密码，去掉它即可
+        if ( $http_ds_password != 'your password' ){ # 校验密码，如果不配置密码，去掉它即可
             return 404; # 也可以改成403、502等其他错误,最好与下面的返回一致
         }
         set $_full_uri $uri$is_args$args;
