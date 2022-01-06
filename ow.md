@@ -42,6 +42,8 @@ DevSidecar：               返回给DevSidecar
 我的服务器是[1核1G的香港主机](https://www.ucloud.cn/site/active/kuaijie.html?invitation_code=C1xF886DAFF2658)       
 如果你没有合适的境外主机，可以点击链接去购买，新用户还是挺划算的
 
+你也可以试试免费的[cf-workers](./cf-works.md)
+
 ### 2. nginx配置
 
 ```
