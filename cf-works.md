@@ -43,6 +43,6 @@ async function eventHandler(event) {
  域名 = YourWorkersName.YourAccountName.workers.dev    
  路径 = xxxxxxxx
 
- 点击应用即可
+ 配置你代码中的域名和路径，点击应用即可
  
 ## 6、 测试访问
