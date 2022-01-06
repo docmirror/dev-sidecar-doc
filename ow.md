@@ -85,6 +85,7 @@ DevSidecar：               返回给DevSidecar
         proxy_max_temp_file_size 128m;
         proxy_set_header Host $_host;
         proxy_ssl_server_name on;
+        proxy_set_header ds_password '';
     }
     location / {  # 其他访问全部拒绝，规避GFW的钓鱼试探
        resolver 1.1.1.1;
