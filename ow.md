@@ -42,7 +42,6 @@ DevSidecar：               返回给DevSidecar
 我的服务器是[1核1G的香港主机](https://www.ucloud.cn/site/active/kuaijie.html?invitation_code=C1xF886DAFF2658)       
 如果你没有合适的境外主机，可以点击链接去购买，新用户还是挺划算的
 
-你也可以试试免费的[cf-workers](./cf-works.md)
 
 ### 2. nginx配置
 
@@ -104,6 +103,10 @@ DevSidecar：               返回给DevSidecar
 > `xxxxxxxx`一定要修改成你自己的，你把它也当成是一个密码        
 > 注意保护好 `域名、路径 和密码`，不要公开     
 
-## docker镜像启动
+## 其他部署方式
+###  1、docker镜像启动
 如果你不会安装nginx，推荐你按下面的docker镜像启动更方便   
 [docker启动教程](./docker.md)
+
+### 2、cf-workers
+你也可以试试免费的[cf-workers](./cf-works.md)
